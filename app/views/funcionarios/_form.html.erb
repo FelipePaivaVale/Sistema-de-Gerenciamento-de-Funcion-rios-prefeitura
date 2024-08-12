@@ -1,0 +1,20 @@
+<%= simple_form_for(@funcionario) do |f| %>
+  <%= f.input :nome, label: "Nome Completo" %>
+  <%= f.input :nascimento, as: :date, label: "Data de Nascimento" %>
+  <%= f.input :genero, collection: ['Masculino', 'Feminino', 'Outro'], include_blank: false, label: "Gênero" %>
+  <%= f.input :cpf, label: "CPF" %>
+  <%= f.input :rg, label: "RG" %>
+  <%= f.input :rua, label: "Rua" %>
+  <%= f.input :numero, label: "Número" %>
+  <%= f.input :complemento, label: "Complemento" %>
+  <%= f.input :bairro, label: "Bairro" %>
+  <%= f.input :cidade, label: "Cidade" %>
+  <%= f.input :estado, label: "Estado" %>
+  <%= f.input :cep, label: "CEP" %>
+  <%= f.input :cargo, label: "Cargo" %>
+  <%= f.input :contratação, as: :date, label: "Data de Contratação" %>
+  <%= f.input :salario, as: :decimal, label: "Salário" %>
+  <%= f.input :status, collection: ['Ativo', 'Inativo', 'Em licença'], include_blank: false, label: "Status" %>
+  <%= f.association :departamento, as: :select, label: "Departamento" %>
+  <%= f.button :submit %>
+<% end %>

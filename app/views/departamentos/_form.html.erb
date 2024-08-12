@@ -1,0 +1,14 @@
+
+<%= simple_form_for(@departamento) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <%= f.input :nome, label: "Nome do Departamento" %>
+  <%= f.input :descricao, label: "Descrição" %>
+  <%= f.input :codigo, label: "Código do Departamento" %>
+  <%= f.input :localizacao, label: "Localização" %>
+  <%= f.input :status, collection: ['Ativo', 'Inativo'], include_blank: false, label: "Status do Departamento" %>
+  <%= f.button :submit %>
+
+<% end %>
+
