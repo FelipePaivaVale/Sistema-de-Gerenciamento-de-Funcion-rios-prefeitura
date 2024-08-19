@@ -4,7 +4,7 @@ class DepartamentosController < ApplicationController
   # GET /departamentos or /departamentos.json
   def index
     @q = Departamento.ransack(params[:q])
-    @departamentos = @q.result
+    @departamentos = Departamento.all
   end
 
   # GET /departamentos/1 or /departamentos/1.json
