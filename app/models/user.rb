@@ -3,17 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
-  has_and_belongs_to_many :departamentos
-
-  validates :name, presence: true
-  validates :nivel, presence: true, inclusion: { in: %w(admin gestor_rh) }
-       
+  belongs_to :departamento, optional: true
   def admin?
-    nivel == 'admin'
+    role == 'admin'
   end
-       
-  def gestor_rh?
-    nivel == 'gestor_rh'
+
+  def gestor_de_rh?
+    role == 'gestor de RH'
   end
 end

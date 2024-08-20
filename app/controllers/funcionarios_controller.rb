@@ -1,5 +1,7 @@
 class FuncionariosController < ApplicationController
   before_action :set_funcionario, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+  before_action :authorize_funcionario, only: %i[index show new create edit update destroy]
 
   # GET /funcionarios or /funcionarios.json
   def index
@@ -87,5 +89,9 @@ class FuncionariosController < ApplicationController
         :salario,
         :status
       )
+    end
+    
+    def authorize_funcionario
+      authorize @funcionario || Funcionario
     end
 end
