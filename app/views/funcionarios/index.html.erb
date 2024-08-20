@@ -2,17 +2,6 @@
 
 <h1>Funcionarios</h1>
 
-<div id="funcionarios">
-  <% @funcionario.each do |funcionario| %>
-    <%= render funcionario %>
-    <p>
-      <%= link_to "Show this funcionario", funcionario %>
-    </p>
-  <% end %>
-</div>
-
-<h1>Funcionários</h1>
-
 <table>
   <thead>
     <tr>
@@ -28,8 +17,8 @@
     <% @funcionario.each do |funcionario| %>
       <tr>
         <td><%= funcionario.nome %></td>
-        <td><%= funcionario.departamento.name if funcionario.departamento %></td>
-        <td><%= funcionario.cargo %></td>
+        <td><%= funcionario.departamento.nome if funcionario.departamento %></td>
+        <td><%= funcionario.cargo.nome %></td>
         <td><%= funcionario.status %></td>
         <td><%= link_to 'Mostrar', funcionario %></td>
         <td><%= link_to 'Editar', edit_funcionario_path(funcionario) %></td>
@@ -38,8 +27,5 @@
     <% end %>
   </tbody>
 </table>
-
-
-
 
 <%= link_to "New funcionario", new_funcionario_path %>

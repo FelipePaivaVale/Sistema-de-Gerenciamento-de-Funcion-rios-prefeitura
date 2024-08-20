@@ -1,0 +1,45 @@
+<%= form_with(model: @cargo, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :nome, "Nome do Cargo" %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descricao, "Descrição" %>
+    <%= form.text_area :descricao %>
+  </div>
+
+  <div class="field">
+    <%= form.label :departamento_id, "Departamento" %>
+    <%= form.collection_select :departamento_id, Departamento.all, :id, :nome, prompt: "Selecione um Departamento" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nivel, "Nível do Cargo" %>
+    <%= form.select :nivel, ["Júnior", "Pleno", "Sênior", "Não se aplica"], prompt: "Selecione o Nível" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :salario_base, "Salário Base" %>
+    <%= form.number_field :salario_base, step: 0.01 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :requisitos, "Requisitos" %>
+    <%= form.text_area :requisitos %>
+  </div>
+
+  <div class="field">
+    <%= form.label :beneficios, "Benefícios" %>
+    <%= form.text_area :beneficios %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status, "Status do Cargo" %>
+    <%= form.select :status, ["Ativo", "Inativo"], prompt: "Selecione o Status" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Salvar Cargo" %>
+  </div>
+<% end %>

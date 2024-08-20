@@ -1,20 +1,94 @@
-<%= simple_form_for(@funcionario) do |f| %>
-  <%= f.input :nome, label: "Nome Completo" %>
-  <%= f.input :nascimento, as: :date, label: "Data de Nascimento" %>
-  <%= f.input :genero, collection: ['Masculino', 'Feminino', 'Outro'], include_blank: false, label: "Gênero" %>
-  <%= f.input :cpf, label: "CPF" %>
-  <%= f.input :rg, label: "RG" %>
-  <%= f.input :rua, label: "Rua" %>
-  <%= f.input :numero, label: "Número" %>
-  <%= f.input :complemento, label: "Complemento" %>
-  <%= f.input :bairro, label: "Bairro" %>
-  <%= f.input :cidade, label: "Cidade" %>
-  <%= f.input :estado, label: "Estado" %>
-  <%= f.input :cep, label: "CEP" %>
-  <%= f.input :cargo, label: "Cargo" %>
-  <%= f.input :contratação, as: :date, label: "Data de Contratação" %>
-  <%= f.input :salario, as: :decimal, label: "Salário" %>
-  <%= f.input :status, collection: ['Ativo', 'Inativo', 'Em licença'], include_blank: false, label: "Status" %>
-  <%= f.association :departamento, as: :select, label: "Departamento" %>
-  <%= f.button :submit %>
+<%= form_with(model: @funcionario, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :nome, "Nome Completo" %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nascimento, "Data de Nascimento" %>
+    <%= form.date_select :nascimento, start_year: 1900, end_year: Date.today.year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :genero, "Gênero" %>
+    <%= form.select :genero, ["Masculino", "Feminino", "Outro"], prompt: "Selecione o Gênero" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cpf, "CPF" %>
+    <%= form.text_field :cpf %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rg, "RG" %>
+    <%= form.text_field :rg %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rua, "Rua" %>
+    <%= form.text_field :rua %>
+  </div>
+  <div class="field">
+    <%= form.label :numero, "Número" %>
+    <%= form.text_field :numero %>
+  </div>
+  <div class="field">
+    <%= form.label :complemento, "Complemento" %>
+    <%= form.text_field :complemento %>
+  </div>
+  <div class="field">
+    <%= form.label :bairro, "Bairro" %>
+    <%= form.text_field :bairro %>
+  </div>
+  <div class="field">
+    <%= form.label :cidade, "Cidade" %>
+    <%= form.text_field :cidade %>
+  </div>
+  <div class="field">
+    <%= form.label :estado, "Estado" %>
+    <%= form.text_field :estado %>
+  </div>
+  <div class="field">
+    <%= form.label :cep, "CEP" %>
+    <%= form.text_field :cep %>
+  </div>
+
+  <div class="field">
+    <%= form.label :telefone, "Telefone" %>
+    <%= form.text_field :telefone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email, "E-mail" %>
+    <%= form.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :departamento_id, "Departamento" %>
+    <%= form.collection_select :departamento_id, Departamento.all, :id, :nome, prompt: "Selecione um Departamento" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cargo_id, "Cargo" %>
+    <%= form.collection_select :cargo_id, Cargo.all, :id, :nome, prompt: "Selecione um Cargo" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contratação, "Data de Contratação" %>
+    <%= form.date_select :contratação, start_year: 1900, end_year: Date.today.year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :salario, "Salário" %>
+    <%= form.number_field :salario, step: 0.01 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status, "Status" %>
+    <%= form.select :status, ["Ativo", "Inativo", "Em licença"], prompt: "Selecione o Status" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Salvar Funcionário" %>
+  </div>
 <% end %>
