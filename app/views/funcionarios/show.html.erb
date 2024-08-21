@@ -1,6 +1,96 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @funcionario %>
+<h1><%= @funcionario.nome %></h1>
+
+<p>
+  <strong>CPF:</strong>
+  <%= @funcionario.cpf %>
+</p>
+
+<p>
+  <strong>RG:</strong>
+  <%= @funcionario.rg %>
+</p>
+
+<p>
+  <strong>Data de Nascimento:</strong>
+  <%= @funcionario.nascimento %>
+</p>
+
+<p>
+  <strong>Gênero:</strong>
+  <%= @funcionario.genero %>
+</p>
+
+<p>
+  <strong>Cargo:</strong>
+  <%= @funcionario.cargo.nome if @funcionario.cargo %>
+</p>
+
+<p>
+  <strong>Departamento:</strong>
+  <%= @funcionario.departamento.nome if @funcionario.departamento %>
+</p>
+
+<p>
+  <strong>Rua:</strong>
+  <%= @funcionario.rua %>
+</p>
+
+<p>
+  <strong>Bairro:</strong>
+  <%= @funcionario.bairro %>
+</p>
+
+<p>
+  <strong>Número:</strong>
+  <%= @funcionario.numero %>
+</p>
+
+<p>
+  <strong>Complemento:</strong>
+  <%= @funcionario.complemento %>
+</p>
+
+<p>
+  <strong>Cidade:</strong>
+  <%= @funcionario.cidade %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @funcionario.estado %>
+</p>
+
+<p>
+  <strong>CEP:</strong>
+  <%= @funcionario.cep %>
+</p>
+
+<p>
+  <strong>Telefone:</strong>
+  <%= @funcionario.telefone %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @funcionario.email %>
+</p>
+
+<p>
+  <strong>Contratação:</strong>
+  <%= @funcionario.contratação %>
+</p>
+
+<p>
+  <strong>Salario:</strong>
+  <%= @funcionario.salario %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @funcionario.status %>
+</p>
 
 <div>
   <%= link_to "Edit this funcionario", edit_funcionario_path(@funcionario) %> |
