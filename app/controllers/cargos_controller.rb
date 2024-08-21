@@ -1,6 +1,7 @@
 class CargosController < ApplicationController
   before_action :set_cargo, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!
+  before_action :authorize_cargo, only: %i[index show new create edit update destroy]
   # GET /cargos or /cargos.json
   def index
     @cargos = Cargo.all
@@ -66,5 +67,9 @@ class CargosController < ApplicationController
     # Only allow a list of trusted parameters through.
     def cargo_params
       params.require(:cargo).permit(:nome, :descricao, :departamento_id, :nivel, :salario_base, :requisitos, :beneficios, :status)
+    end
+
+    def authorize_cargo
+      authorize @cargo || Cargo
     end
 end

@@ -1,6 +1,7 @@
 class DepartamentosController < ApplicationController
   before_action :set_departamento, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!
+  before_action :authorize_departamento, only: %i[index show new create edit update destroy]
   # GET /departamentos or /departamentos.json
   def index
     @q = Departamento.ransack(params[:q])
@@ -67,5 +68,9 @@ class DepartamentosController < ApplicationController
     # Only allow a list of trusted parameters through.
     def departamento_params
       params.require(:departamento).permit(:nome, :descricao, :codigo, :localizacao, :status)
+    end
+
+    def authorize_departamento
+      authorize @departamento || Departamento
     end
 end
