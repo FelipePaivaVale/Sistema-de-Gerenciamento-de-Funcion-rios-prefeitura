@@ -12,3 +12,7 @@
 </div>
 
 <%= link_to "New cargo", new_cargo_path %>
+
+<% if user_signed_in? %>
+  <%= button_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure you want to log out?' } %>
+<% end %>

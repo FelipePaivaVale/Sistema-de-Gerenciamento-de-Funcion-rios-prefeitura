@@ -31,3 +31,8 @@
 <% else %>
   <p>Nenhum departamento encontrado.</p>
 <% end %>
+
+
+<% if user_signed_in? %>
+  <%= button_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure you want to log out?' } %>
+<% end %>

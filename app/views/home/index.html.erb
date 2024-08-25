@@ -1,7 +1,17 @@
-<h1>Bem-vindo à Página Inicial</h1>
+<div class="layout-container">
+  <div class="sidebar">
+    <div class="shortcuts">
+      <%= link_to 'Funcionários', funcionarios_path, class: 'btn btn-primary' %>
+      <%= link_to 'Cargos', cargos_path, class: 'btn btn-primary' %>
+      <%= link_to 'Departamentos', departamentos_path, class: 'btn btn-primary' %>
+    </div>
 
-<div class="shortcuts">
-  <%= link_to 'Funcionários', funcionarios_path, class: 'btn btn-primary' %>
-  <%= link_to 'Cargos', cargos_path, class: 'btn btn-primary' %>
-  <%= link_to 'Departamentos', departamentos_path, class: 'btn btn-primary' %>
+    <% if user_signed_in? %>
+      <%= button_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure you want to log out?' }, class: 'btn btn-danger' %>
+    <% end %>
+  </div>
+
+  <div class="content">
+    <!-- Espaço em branco central -->
+  </div>
 </div>

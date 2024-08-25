@@ -1,94 +1,81 @@
-<%= form_with(model: @funcionario, local: true) do |form| %>
+<%= simple_form_for @funcionario, html: { local: true } do |f| %>
   <div class="field">
-    <%= form.label :nome, "Nome Completo" %>
-    <%= form.text_field :nome %>
+    <%= f.input :nome, label: "Nome Completo" %>
   </div>
 
   <div class="field">
-    <%= form.label :nascimento, "Data de Nascimento" %>
-    <%= form.date_select :nascimento, start_year: 1900, end_year: Date.today.year %>
+    <%= f.input :nascimento, label: "Data de Nascimento", as: :date, start_year: 1900, end_year: Date.today.year %>
   </div>
 
   <div class="field">
-    <%= form.label :genero, "Gênero" %>
-    <%= form.select :genero, ["Masculino", "Feminino", "Outro"], prompt: "Selecione o Gênero" %>
+    <%= f.input :genero, label: "Gênero", collection: ["Masculino", "Feminino", "Outro"], prompt: "Selecione o Gênero" %>
   </div>
 
   <div class="field">
-    <%= form.label :cpf, "CPF" %>
-    <%= form.text_field :cpf %>
+    <%= f.input :cpf, label: "CPF" %>
   </div>
 
   <div class="field">
-    <%= form.label :rg, "RG" %>
-    <%= form.text_field :rg %>
+    <%= f.input :rg, label: "RG" %>
   </div>
 
   <div class="field">
-    <%= form.label :rua, "Rua" %>
-    <%= form.text_field :rua %>
-  </div>
-  <div class="field">
-    <%= form.label :numero, "Número" %>
-    <%= form.text_field :numero %>
-  </div>
-  <div class="field">
-    <%= form.label :complemento, "Complemento" %>
-    <%= form.text_field :complemento %>
-  </div>
-  <div class="field">
-    <%= form.label :bairro, "Bairro" %>
-    <%= form.text_field :bairro %>
-  </div>
-  <div class="field">
-    <%= form.label :cidade, "Cidade" %>
-    <%= form.text_field :cidade %>
-  </div>
-  <div class="field">
-    <%= form.label :estado, "Estado" %>
-    <%= form.text_field :estado %>
-  </div>
-  <div class="field">
-    <%= form.label :cep, "CEP" %>
-    <%= form.text_field :cep %>
+    <%= f.input :rua, label: "Rua" %>
   </div>
 
   <div class="field">
-    <%= form.label :telefone, "Telefone" %>
-    <%= form.text_field :telefone %>
+    <%= f.input :numero, label: "Número" %>
   </div>
 
   <div class="field">
-    <%= form.label :email, "E-mail" %>
-    <%= form.email_field :email %>
+    <%= f.input :complemento, label: "Complemento" %>
   </div>
 
   <div class="field">
-    <%= form.label :departamento_id, "Departamento" %>
-    <%= form.collection_select :departamento_id, Departamento.all, :id, :nome, prompt: "Selecione um Departamento" %>
+    <%= f.input :bairro, label: "Bairro" %>
   </div>
 
   <div class="field">
-    <%= form.label :cargo_id, "Cargo" %>
-    <%= form.collection_select :cargo_id, Cargo.all, :id, :nome, prompt: "Selecione um Cargo" %>
+    <%= f.input :cidade, label: "Cidade" %>
   </div>
 
   <div class="field">
-    <%= form.label :contratação, "Data de Contratação" %>
-    <%= form.date_select :contratação, start_year: 1900, end_year: Date.today.year %>
+    <%= f.input :estado, label: "Estado" %>
   </div>
 
   <div class="field">
-    <%= form.label :salario, "Salário" %>
-    <%= form.number_field :salario, step: 0.01 %>
+    <%= f.input :cep, label: "CEP" %>
   </div>
 
   <div class="field">
-    <%= form.label :status, "Status" %>
-    <%= form.select :status, ["Ativo", "Inativo", "Em licença"], prompt: "Selecione o Status" %>
+    <%= f.input :telefone, label: "Telefone" %>
+  </div>
+
+  <div class="field">
+    <%= f.input :email, label: "E-mail", as: :email %>
+  </div>
+
+  <div class="field">
+    <%= f.input :departamento_id, label: "Departamento", as: :select, collection: Departamento.all.collect { |d| [d.nome, d.id] }, prompt: "Selecione um Departamento" %>
+  </div>
+
+  <div class="field">
+    <%= f.input :cargo_id, label: "Cargo", as: :select, collection: Cargo.all.collect { |c| [c.nome, c.id] }, prompt: "Selecione um Cargo" %>
+  </div>
+
+  <div class="field">
+    <%= f.input :contratação, label: "Data de Contratação", as: :date, start_year: 1900, end_year: Date.today.year %>
+  </div>
+
+  <div class="field">
+    <%= f.input :salario, label: "Salário", as: :decimal, step: 0.01 %>
+  </div>
+
+  <div class="field">
+    <%= f.input :status, label: "Status", collection: ["Ativo", "Inativo", "Em licença"], prompt: "Selecione o Status" %>
   </div>
 
   <div class="actions">
-    <%= form.submit "Salvar Funcionário" %>
+    <%= f.button :submit, "Salvar Funcionário" %>
   </div>
 <% end %>

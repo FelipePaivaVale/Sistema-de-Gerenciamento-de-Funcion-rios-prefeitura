@@ -1,0 +1,35 @@
+.layout-container {
+    display: flex;
+    min-height: 100vh; /* Faz o layout ocupar a altura total da tela */
+  }
+  
+  .sidebar {
+    width: 200px; /* Largura da barra lateral */
+    background-color: #f8f9fa; /* Cor de fundo da barra lateral */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Sombra na barra lateral */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .sidebar .shortcuts {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar .shortcuts .btn {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar .btn-danger {
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .content {
+    flex-grow: 1; /* O conteúdo central ocupa o espaço restante */
+    padding: 20px;
+    background-color: #ffffff; /* Cor de fundo do conteúdo central */
+  }
+  
