@@ -4,6 +4,7 @@
     align-items: center;
     height: 100vh; /* Faz a altura ocupar a tela inteira */
     background-color: #f8f9fa; /* Cor de fundo da página */
+    
   }
   
   .login-form {
@@ -29,10 +30,19 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  input[type="email"], [type="password"], [type="remember_me"]{
+    font-size: 12pt;
+    border-radius: 2px; /* Arredondar os cantos */
+    padding: 5px; /* Espaçamento interno */
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+  }
+  
   
   .form-actions .btn {
     width: 100%;
-    padding: 10px;
+    padding: 20px;
     background-color: #007bff; /* Cor do botão */
     color: white;
     border: none;

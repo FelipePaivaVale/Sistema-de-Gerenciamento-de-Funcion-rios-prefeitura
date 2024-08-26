@@ -1,18 +1,52 @@
-<p style="color: green"><%= notice %></p>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-<h1>Cargos</h1>
+<div class="layout-container">
+  <div class="sidebar">
+    <div class="shortcuts">
+      <%= link_to 'Funcionários', funcionarios_path, class: 'btn btn-primary' %>
+      <%= link_to 'Cargos', cargos_path, class: 'btn btn-primary' %>
+      <%= link_to 'Departamentos', departamentos_path, class: 'btn btn-primary' %>
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to 'Registrar', new_user_registration_path, class: 'btn btn-success' %>
+      <% end %>
+      <%= link_to "Novo cargo", new_cargo_path, class: 'btn btn-success'  %>
+    </div>
 
-<div id="cargos">
-  <% @cargos.each do |cargo| %>
-    <%= render cargo %>
-    <p>
-      <%= link_to "Show this cargo", cargo %>
-    </p>
-  <% end %>
+    <% if user_signed_in? %>
+      <%= button_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure you want to log out?' }, class: 'btn btn-danger' %>
+    <% end %>
+  </div>
+
+  
+
+  <div class="content">
+
+    <h1>Cargos</h1>
+
+      <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Departamento</th>
+          <th>Status</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% @cargos.each do |cargo|%>
+          <tr>
+            <td><%= cargo.nome %></td>
+            <td><%= cargo.descricao%></td>
+            <td><%= cargo.departamento.codigo %></td>
+            <td><%= cargo.status %></td>
+            <td><%= link_to 'Mostrar', cargo%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table> 
+    </div>
+    
+    </div>
 </div>
-
-<%= link_to "New cargo", new_cargo_path %>
-
-<% if user_signed_in? %>
-  <%= button_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure you want to log out?' } %>
-<% end %>

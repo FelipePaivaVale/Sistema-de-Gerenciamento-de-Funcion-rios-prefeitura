@@ -1,45 +1,23 @@
-<%= form_with(model: @cargo, local: true) do |form| %>
-  <div class="field">
-    <%= form.label :nome, "Nome do Cargo" %>
-    <%= form.text_field :nome %>
-  </div>
+<%= simple_form_for @cargo do |form| %>
+  <%= form.input :nome, label: "Nome do Cargo" %>
 
-  <div class="field">
-    <%= form.label :descricao, "Descrição" %>
-    <%= form.text_area :descricao %>
-  </div>
+  <%= form.input :descricao, label: "Descrição", as: :text %>
 
-  <div class="field">
-    <%= form.label :departamento_id, "Departamento" %>
-    <%= form.collection_select :departamento_id, Departamento.all, :id, :nome, prompt: "Selecione um Departamento" %>
-  </div>
+  <%= form.input :departamento_id, label: "Departamento", as: :select, collection: Departamento.all.collect { |d| [d.nome, d.id] }, prompt: "Selecione um Departamento" %>
+  
+  <%= form.input :nivel, label: "Nível do Cargo", collection: ["Júnior", "Pleno", "Sênior", "Não se aplica"], 
+                    prompt: "Selecione o Nível" %>
 
-  <div class="field">
-    <%= form.label :nivel, "Nível do Cargo" %>
-    <%= form.select :nivel, ["Júnior", "Pleno", "Sênior", "Não se aplica"], prompt: "Selecione o Nível" %>
-  </div>
+  <%= form.input :salario_base, label: "Salário Base", as: :decimal, step: 0.01 %>
 
-  <div class="field">
-    <%= form.label :salario_base, "Salário Base" %>
-    <%= form.number_field :salario_base, step: 0.01 %>
-  </div>
+  <%= form.input :requisitos, label: "Requisitos", as: :text %>
 
-  <div class="field">
-    <%= form.label :requisitos, "Requisitos" %>
-    <%= form.text_area :requisitos %>
-  </div>
+  <%= form.input :beneficios, label: "Benefícios", as: :text %>
 
-  <div class="field">
-    <%= form.label :beneficios, "Benefícios" %>
-    <%= form.text_area :beneficios %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status, "Status do Cargo" %>
-    <%= form.select :status, ["Ativo", "Inativo"], prompt: "Selecione o Status" %>
-  </div>
+  <%= form.input :status, label: "Status do Cargo", collection: ["Ativo", "Inativo"], 
+                    prompt: "Selecione o Status" %>
 
   <div class="actions">
-    <%= form.submit "Salvar Cargo" %>
+    <%= form.button :submit, "Salvar Cargo" %>
   </div>
 <% end %>

@@ -1,38 +1,54 @@
-<h1>Departamentos</h1>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-<% if @departamentos.any? %>
-  <table>
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Descrição</th>
-        <th>Código</th>
-        <th>Localização</th>
-        <th>Status</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
 
-    <tbody>
-      <% @departamentos.each do |departamento| %>
-        <tr>
-          <td><%= departamento.nome %></td>
-          <td><%= departamento.descricao %></td>
-          <td><%= departamento.codigo %></td>
-          <td><%= departamento.localizacao %></td>
-          <td><%= departamento.status %></td>
-          <td><%= link_to 'Mostrar', departamento %></td>
-          <td><%= link_to 'Editar', edit_departamento_path(departamento) %></td>
-          <td><%= link_to 'Excluir', departamento, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
-        </tr>
+<div class="layout-container">
+  <div class="sidebar">
+    <div class="shortcuts">
+      <%= link_to 'Funcionários', funcionarios_path, class: 'btn btn-primary' %>
+      <%= link_to 'Cargos', cargos_path, class: 'btn btn-primary' %>
+      <%= link_to 'Departamentos', departamentos_path, class: 'btn btn-primary' %>
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to 'Registrar', new_user_registration_path, class: 'btn btn-success' %>
+        <%= link_to "Novo Departamento", new_departamento_path, class: 'btn btn-success'  %>
       <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>Nenhum departamento encontrado.</p>
-<% end %>
+    </div>
 
+    <% if user_signed_in? %>
+      <%= button_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure you want to log out?' }, class: 'btn btn-danger' %>
+    <% end %>
+  </div>
 
-<% if user_signed_in? %>
-  <%= button_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure you want to log out?' } %>
-<% end %>
+  <div class="content">
+  <h1>Departamentos</h1>
+
+  <% if @departamentos.any? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Código</th>
+          <th>Localização</th>
+          <th>Status</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <% @departamentos.each do |departamento| %>
+          <tr>
+            <td><%= departamento.nome %></td>
+            <td><%= departamento.descricao %></td>
+            <td><%= departamento.codigo %></td>
+            <td><%= departamento.localizacao %></td>
+            <td><%= departamento.status %></td>
+            <td><%= link_to 'Mostrar', departamento %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>Nenhum departamento encontrado.</p>
+  <% end %>
+  </div>
+</div>
