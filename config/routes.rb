@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
+  get 'admin/new_user'
+  get 'admin/create_user'
   root 'home#index'
   devise_for :users
+
+  get 'admin/new_user', to: 'admin#new_user', as: 'new_admin_user'
+  post 'admin/create_user', to: 'admin#create_user', as: 'create_admin_user'
+  
   resources :cargos
   resources :departamentos
   resources :funcionarios

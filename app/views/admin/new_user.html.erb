@@ -1,0 +1,13 @@
+<!-- app/views/admin/new_user.html.erb -->
+<h2>Criar Novo Usuário</h2>
+
+<%= simple_form_for @user, url: create_admin_user_path do |f| %>
+  <%= f.input :name, label: "Nome Completo" %>
+  <%= f.input :email, label: "E-mail" %>
+  <%= f.input :password, label: "Senha" %>
+  <%= f.input :password_confirmation, label: "Confirme a Senha" %>
+  <%= f.input :role, label: "Nível de Acesso", collection: ["admin", "gestor de RH"], prompt: "Selecione o Nível de Acesso" %>
+  <%= f.input :departamento_id, as: :check_boxes, collection: Departamento.all.collect , label: "Departamentos" %>
+
+  <%= f.button :submit, "Criar Usuário", class: "btn btn-primary" %>
+<% end %>
