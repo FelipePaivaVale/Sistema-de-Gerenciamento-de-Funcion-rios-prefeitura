@@ -1,10 +1,12 @@
-<h1>Editing cargo</h1>
 
 <%= render "form", cargo: @cargo %>
 
-<br>
 
-<div>
-  <%= link_to "Exibir", @cargo %> |
-  <%= link_to "Voltar", cargos_path %>
+
+
+<div class="card-footer">
+      <div class="d-flex justify-content-center">
+        <div class="mr-3"><%= link_to "Exibir", @cargo, class: "btn btn-primary" %></div>
+        <%= link_to "Voltar", cargos_path, class: "btn btn-secondary" %>
+      </div>
 </div>

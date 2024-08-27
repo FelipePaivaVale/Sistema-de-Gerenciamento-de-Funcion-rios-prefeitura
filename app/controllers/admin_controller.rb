@@ -9,8 +9,16 @@ class AdminController < ApplicationController
 
   def create_user
     @user = User.new(user_params)
+    temporary_password = SecureRandom.hex(8)
+    @user.password = temporary_password
+    @user.password_confirmation = temporary_password
+
     if @user.save
-      redirect_to root_path, notice: 'Usuário criado com sucesso.'
+      UserMailer.welcome_email(@user, temporary_password).deliver_now
+      respond_to do |format|
+        format.html { redirect_to root_path, notice: "Usuário criado com sucesso." }
+        format.turbo_stream
+      end
     else
       render :new_user
     end

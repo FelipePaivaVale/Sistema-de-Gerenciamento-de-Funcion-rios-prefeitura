@@ -7,9 +7,9 @@
       <%= link_to 'Cargos', cargos_path, class: 'btn btn-outline-primary' %>
       <%= link_to 'Departamentos', departamentos_path, class: 'btn btn-outline-primary' %>
       <% if user_signed_in? && current_user.admin? %>
-        <%= link_to 'Registrar Novo Usuário', new_admin_user_path, class: 'btn btn-outline-primary' %>
+        <%= link_to 'Registrar Usuário', new_admin_user_path, class: 'btn btn-outline-primary', id: 'register-user-btn'%>
       <% end %>
-      <%= link_to "Novo funcionario", new_funcionario_path, class: 'btn btn-outline-primary' %>
+      <%= link_to "Novo Funcionário", new_funcionario_path, class: 'btn btn-outline-primary' %>
     </div>
 
     <% if user_signed_in? %>
@@ -18,30 +18,56 @@
   </div>
 
   <div class="content">
-  <h1>Funcionarios</h1>
+    <h1>Funcionários</h1>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Nome</th>
-        <th>Departamento</th>
-        <th>Cargo</th>
-        <th>Status</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-  
-    <tbody>
-      <% @funcionario.each do |funcionario| %>
+    <%= form_with url: funcionarios_path, method: :get, local: true, class: "mb-4" do %>
+      <div class="row">
+        <div class="col-md-4">
+          <%= label_tag :departamento_id, "Departamento" %>
+          <%= select_tag :departamento_id, options_for_select(@departamentos, params[:departamento_id]), include_blank: "Todos os Departamentos", class: "form-control" %>
+        </div>
+
+        <div class="col-md-4">
+          <%= label_tag :data_contratacao_inicial, "Data de Contratação Inicial" %>
+          <%= date_field_tag :data_contratacao_inicial, params[:data_contratacao_inicial], class: "form-control" %>
+        </div>
+
+        <div class="col-md-4">
+          <%= label_tag :data_contratacao_final, "Data de Contratação Final" %>
+          <%= date_field_tag :data_contratacao_final, params[:data_contratacao_final], class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-12">
+          <%= submit_tag "Filtrar", class: "btn btn-primary" %>
+          <%= link_to "Limpar Filtros", funcionarios_path, class: "btn btn-secondary ml-2" %>
+        </div>
+      </div>
+    <% end %>
+
+    <table class="table table-striped mt-4">
+      <thead>
         <tr>
-          <td><%= funcionario.nome %></td>
-          <td><%= funcionario.departamento.nome if funcionario.departamento %></td>
-          <td><%= funcionario.cargo.nome %></td>
-          <td><%= funcionario.status %></td>
-          <td><%= link_to 'Mostrar', funcionario %></td>
+          <th>Nome</th>
+          <th>Departamento</th>
+          <th>Cargo</th>
+          <th>Status</th>
+          <th colspan="3"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>  
+      </thead>
+    
+      <tbody>
+        <% @funcionarios.each do |funcionario| %>
+          <tr>
+            <td><%= funcionario.nome %></td>
+            <td><%= funcionario.departamento.nome if funcionario.departamento %></td>
+            <td><%= funcionario.cargo.nome if funcionario.cargo %></td>
+            <td><%= funcionario.status %></td>
+            <td><%= link_to 'Mostrar', funcionario %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

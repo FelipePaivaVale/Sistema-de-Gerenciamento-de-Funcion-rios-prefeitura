@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_20_210653) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_27_181717) do
   create_table "cargos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "nome"
     t.text "descricao"
@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_20_210653) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "password_reset_required"
     t.index ["departamento_id"], name: "index_users_on_departamento_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end

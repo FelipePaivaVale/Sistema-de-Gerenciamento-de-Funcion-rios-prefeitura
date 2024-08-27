@@ -1,99 +1,39 @@
-<p style="color: green"><%= notice %></p>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-<h1><%= @funcionario.nome %></h1>
 
-<p>
-  <strong>CPF:</strong>
-  <%= @funcionario.cpf %>
-</p>
 
-<p>
-  <strong>RG:</strong>
-  <%= @funcionario.rg %>
-</p>
-
-<p>
-  <strong>Data de Nascimento:</strong>
-  <%= @funcionario.nascimento %>
-</p>
-
-<p>
-  <strong>Gênero:</strong>
-  <%= @funcionario.genero %>
-</p>
-
-<p>
-  <strong>Cargo:</strong>
-  <%= @funcionario.cargo.nome if @funcionario.cargo %>
-</p>
-
-<p>
-  <strong>Departamento:</strong>
-  <%= @funcionario.departamento.nome if @funcionario.departamento %>
-</p>
-
-<p>
-  <strong>Rua:</strong>
-  <%= @funcionario.rua %>
-</p>
-
-<p>
-  <strong>Bairro:</strong>
-  <%= @funcionario.bairro %>
-</p>
-
-<p>
-  <strong>Número:</strong>
-  <%= @funcionario.numero %>
-</p>
-
-<p>
-  <strong>Complemento:</strong>
-  <%= @funcionario.complemento %>
-</p>
-
-<p>
-  <strong>Cidade:</strong>
-  <%= @funcionario.cidade %>
-</p>
-
-<p>
-  <strong>Estado:</strong>
-  <%= @funcionario.estado %>
-</p>
-
-<p>
-  <strong>CEP:</strong>
-  <%= @funcionario.cep %>
-</p>
-
-<p>
-  <strong>Telefone:</strong>
-  <%= @funcionario.telefone %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @funcionario.email %>
-</p>
-
-<p>
-  <strong>Contratação:</strong>
-  <%= @funcionario.contratação %>
-</p>
-
-<p>
-  <strong>Salario:</strong>
-  <%= @funcionario.salario %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @funcionario.status %>
-</p>
-
-<div>
-  <%= link_to "Editar", edit_funcionario_path(@funcionario) %> |
-  <%= link_to "Voltar", funcionarios_path %>
-  <%= button_to "Apagar", @funcionario, method: :delete %>
+<div class="container mt-5">
+  
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      <h1><%= @funcionario.nome %></h1>
+    </div>
+    <div class="card-body">
+      <p class="mb-2"><strong>CPF:</strong> <%= @funcionario.cpf %></p>
+      <p class="mb-2"><strong>RG:</strong> <%= @funcionario.rg %></p>
+      <p class="mb-2"><strong>Data de Nascimento:</strong> <%= @funcionario.nascimento %></p>
+      <p class="mb-2"><strong>Gênero:</strong> <%= @funcionario.genero %></p>
+      <p class="mb-2"><strong>Cargo:</strong> <%= @funcionario.cargo.nome if @funcionario.cargo %></p>
+      <p class="mb-2"><strong>Departamento:</strong> <%= @funcionario.departamento.nome if @funcionario.departamento %></p>
+      <p class="mb-2"><strong>Rua:</strong> <%= @funcionario.rua %></p>
+      <p class="mb-2"><strong>Bairro:</strong> <%= @funcionario.bairro %></p>
+      <p class="mb-2"><strong>Número:</strong> <%= @funcionario.numero %></p>
+      <p class="mb-2"><strong>Complemento:</strong> <%= @funcionario.complemento %></p>
+      <p class="mb-2"><strong>Cidade:</strong> <%= @funcionario.cidade %></p>
+      <p class="mb-2"><strong>Estado:</strong> <%= @funcionario.estado %></p>
+      <p class="mb-2"><strong>CEP:</strong> <%= @funcionario.cep %></p>
+      <p class="mb-2"><strong>Telefone:</strong> <%= @funcionario.telefone %></p>
+      <p class="mb-2"><strong>Email:</strong> <%= @funcionario.email %></p>
+      <p class="mb-2"><strong>Contratação:</strong> <%= @funcionario.contratação %></p>
+      <p class="mb-2"><strong>Salário:</strong> <%= number_to_currency(@funcionario.salario) %></p>
+      <p class="mb-2"><strong>Status:</strong> <%= @funcionario.status %></p>
+    </div>
+    <div class="card-footer">
+      <div class="d-flex justify-content-between">
+        <%= link_to "Editar", edit_funcionario_path(@funcionario), class: "btn btn-warning" %>
+        <%= link_to "Voltar", funcionarios_path, class: "btn btn-secondary" %>
+        <%= button_to "Apagar", @funcionario, method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
 </div>

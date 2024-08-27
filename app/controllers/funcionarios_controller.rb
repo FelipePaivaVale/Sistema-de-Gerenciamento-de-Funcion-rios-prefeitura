@@ -7,6 +7,18 @@ class FuncionariosController < ApplicationController
   def index
     @q = Funcionario.ransack(params[:q])
     @funcionario = @q.result.includes(:departamento)
+
+    @departamentos = Departamento.all.pluck(:nome, :id)
+    @funcionarios = Funcionario.all
+
+    if params[:departamento_id].present?
+      @funcionarios = @funcionarios.where(departamento_id: params[:departamento_id])
+    end
+
+    
+    if params[:data_contratacao_inicial].present? && params[:data_contratacao_final].present?
+      @funcionarios = @funcionarios.where(contratação: params[:data_contratacao_inicial]..params[:data_contratacao_final])
+    end
   end
 
   # GET /funcionarios/1 or /funcionarios/1.json
