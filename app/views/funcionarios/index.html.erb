@@ -3,17 +3,17 @@
 <div class="layout-container">
   <div class="sidebar">
     <div class="shortcuts">
-      <%= link_to 'Funcionários', funcionarios_path, class: 'btn btn-primary' %>
-      <%= link_to 'Cargos', cargos_path, class: 'btn btn-primary' %>
-      <%= link_to 'Departamentos', departamentos_path, class: 'btn btn-primary' %>
+      <%= link_to 'Funcionários', funcionarios_path, class: 'btn btn-outline-primary' %>
+      <%= link_to 'Cargos', cargos_path, class: 'btn btn-outline-primary' %>
+      <%= link_to 'Departamentos', departamentos_path, class: 'btn btn-outline-primary' %>
       <% if user_signed_in? && current_user.admin? %>
-        <%= link_to 'Registrar', new_user_registration_path, class: 'btn btn-success' %>
+        <%= link_to 'Registrar Novo Usuário', new_admin_user_path, class: 'btn btn-outline-primary' %>
       <% end %>
-      <%= link_to "Novo funcionario", new_funcionario_path, class: 'btn btn-primary' %>
+      <%= link_to "Novo funcionario", new_funcionario_path, class: 'btn btn-outline-primary' %>
     </div>
 
     <% if user_signed_in? %>
-      <%= button_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure you want to log out?' }, class: 'btn btn-danger' %>
+      <%= button_to 'Sair', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure you want to log out?' }, class: 'btn btn-danger' %>
     <% end %>
   </div>
 
